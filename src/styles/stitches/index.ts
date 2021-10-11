@@ -12,7 +12,6 @@ export const globalStyles = globalCss({
   },
   html: {
     fontSize: "100%",
-    background: "DarkRed",
   },
   "html, input, button, select, a": {
     fontFamily: "Inter, sans-serif",
