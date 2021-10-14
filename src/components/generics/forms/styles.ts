@@ -25,6 +25,9 @@ export const FieldWrapperStyled = Stitches.styled("div", {
     backgroundColor: "transparent",
     transition: "border-color 0.2s ease-in-out",
     padding: "0 $2",
+    fontSize: "$body",
+    fontWeight: "$body",
+    color: "$gray100",
 
     "&:focus": {
       borderColor: "$primaryLight",

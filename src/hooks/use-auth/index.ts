@@ -12,35 +12,26 @@ type UserSignInData = {
 type UserSignInParams = {
   email: string;
   password: string;
-  onSuccess: () => void;
-  onError: () => void;
 };
 
 export function useAuth() {
   const history = useHistory();
 
-  function signIn(props: UserSignInParams) {
-    const mutation = useMutation(
-      () => {
-        return API.post<UserSignInData>("/admin/login", {
-          email: props.email,
-          password: props.password,
-        });
+  const signIn = useMutation(
+    (props: UserSignInParams) => {
+      return API.post<UserSignInData>("/admin/login", {
+        email: props.email,
+        password: props.password,
+      });
+    },
+    {
+      onSuccess: (data) => {
+        setStoredUser(data.data.admin);
+        setStoredToken(data.data.token);
       },
-      {
-        onSuccess: (data) => {
-          setStoredUser(data.data.admin);
-          setStoredToken(data.data.token);
-          props.onSuccess();
-        },
-        onError: () => {
-          props.onError();
-        },
-      }
-    );
-
-    return mutation;
-  }
+      onError: () => {},
+    }
+  );
 
   function signOut() {
     localStorage.clear();
