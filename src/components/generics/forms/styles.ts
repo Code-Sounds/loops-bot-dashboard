@@ -9,7 +9,7 @@ export const FieldWrapperStyled = Stitches.styled("div", {
   marginBottom: "$2",
 
   "& > label": {
-    fontSize: "$subtitle",
+    fontSize: "$body",
     fontWeight: "$medium",
     textAlign: "left",
     marginBottom: "$1",

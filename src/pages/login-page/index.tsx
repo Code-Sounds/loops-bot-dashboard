@@ -1,19 +1,17 @@
 import { FieldWrapper } from "../../components/generics/forms";
+import { LoginPageForm, LoginPageWrapper } from "./styles";
 
 export function LoginPage() {
   return (
-    <div>
-      <h1>Login</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
-        voluptatum?
+    <LoginPageWrapper>
+      <LoginPageForm>
         <FieldWrapper label="Email">
           <input type="text" />
         </FieldWrapper>
         <FieldWrapper label="Password">
           <input type="text" />
         </FieldWrapper>
-      </p>
-    </div>
+      </LoginPageForm>
+    </LoginPageWrapper>
   );
 }
