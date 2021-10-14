@@ -13,7 +13,12 @@ export function LoginPage() {
           <input type="text" />
         </FieldWrapper>
 
-        <DefaultButton color="primary" size="medium" type="submit">
+        <DefaultButton
+          color="primary"
+          size="medium"
+          type="submit"
+          css={{ marginTop: "$3" }}
+        >
           Login
         </DefaultButton>
       </LoginPageForm>
