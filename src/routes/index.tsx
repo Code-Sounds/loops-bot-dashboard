@@ -8,10 +8,10 @@ export default function Routes() {
       <Switch>
         <Route exact path="/login" component={LoginPage} />
 
-        {/* <PrivateRoute path="/" exact>
-            <HomePage />
-          </PrivateRoute>
-
+        <PrivateRoute path="/" exact>
+          <h1>Home</h1>
+        </PrivateRoute>
+        {/* 
           <PrivateRoute path="/management" exact>
             <ManagementContextProvider>
               <ManagementPage />
