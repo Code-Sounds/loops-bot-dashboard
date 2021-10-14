@@ -2,10 +2,16 @@ import { DefaultButton } from "../../components/generics/buttons";
 import { FieldWrapper } from "../../components/generics/forms";
 import { LoginPageForm, LoginPageWrapper } from "./styles";
 
+import logoLarge from "../../assets/logo-large.svg";
+
 export function LoginPage() {
   return (
     <LoginPageWrapper>
       <LoginPageForm>
+        <div className="logo">
+          <img src={logoLarge} alt="logo" />
+        </div>
+
         <FieldWrapper label="Email">
           <input type="text" />
         </FieldWrapper>

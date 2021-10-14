@@ -17,4 +17,14 @@ export const LoginPageForm = Stitches.styled("form", {
   backgroundColor: "$bgPrimary",
   boxShadow: "$default",
   borderRadius: "$default",
+
+  "> div.logo": {
+    paddingBottom: "$2",
+    marginBottom: "$5",
+    borderBottom: "1px solid $gray600",
+
+    "> img": {
+      margin: "0 auto",
+    },
+  },
 });
