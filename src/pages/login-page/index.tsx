@@ -1,3 +1,4 @@
+import { DefaultButton } from "../../components/generics/buttons";
 import { FieldWrapper } from "../../components/generics/forms";
 import { LoginPageForm, LoginPageWrapper } from "./styles";
 
@@ -11,6 +12,10 @@ export function LoginPage() {
         <FieldWrapper label="Password">
           <input type="text" />
         </FieldWrapper>
+
+        <DefaultButton color="primary" size="medium" type="submit">
+          Login
+        </DefaultButton>
       </LoginPageForm>
     </LoginPageWrapper>
   );
