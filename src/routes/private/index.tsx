@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Redirect, RouteProps } from "react-router-dom";
-
-import { isExpiredToken } from "../../utils/token-utils";
+import { isExpiredToken } from "../../utils/generic";
 
 export type PrivateRouteProps = {
   children: React.ReactNode;
