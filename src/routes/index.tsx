@@ -1,4 +1,5 @@
 import { Route, BrowserRouter, Switch } from "react-router-dom";
+import { MusicsPage } from "../pages/dashboard/musics";
 import { LoginPage } from "../pages/login-page";
 import { PrivateRoute } from "./private";
 
@@ -9,7 +10,7 @@ export default function Routes() {
         <Route exact path="/login" component={LoginPage} />
 
         <PrivateRoute path="/" exact>
-          <h1>Home</h1>
+          <MusicsPage />
         </PrivateRoute>
         {/* 
           <PrivateRoute path="/management" exact>
