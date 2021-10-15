@@ -10,8 +10,22 @@ export const TemplateSidebar = Stitches.styled("aside", {
   backgroundColor: "$bgPrimary",
   borderRight: "2px solid $bgSecondary",
   width: "110px",
+  height: "100vh",
   minHeight: "100vh",
   padding: "$2",
+
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+  alignItems: "center",
+
+  "& > nav": {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "$2",
+  },
 });
 
 export const TemplateContent = Stitches.styled("main", {
