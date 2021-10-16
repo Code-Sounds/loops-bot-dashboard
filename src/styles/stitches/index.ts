@@ -60,6 +60,10 @@ export const Stitches = createStitches({
       3: getRem(20),
       4: getRem(25),
       5: getRem(30),
+      6: getRem(35),
+      7: getRem(40),
+      8: getRem(45),
+      9: getRem(50),
     },
     sizes: {
       1: getRem(30),
