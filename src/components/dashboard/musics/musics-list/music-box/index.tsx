@@ -13,16 +13,19 @@ import {
 type Props = {
   music: MusicAPIData;
   refetch: () => void | Promise<void>;
+  index: number;
 };
 
-export function MusicBox({ music, refetch }: Props) {
+export function MusicBox({ music, refetch, index }: Props) {
+  function handlePlayMusic() {
+    window.open(music.url, "_blank");
+  }
+
   return (
     <MusicBoxWrapper>
       <MusicBoxLeft>
         <MusicBoxLeftPosition>
-          <strong>
-            {music.position < 10 ? `0${music.position}` : music.position}
-          </strong>
+          <strong>{index < 10 ? `0${index}` : index}</strong>
         </MusicBoxLeftPosition>
         <MusicBoxLeftInfos>
           <span>{music.artist} - </span>
@@ -42,7 +45,7 @@ export function MusicBox({ music, refetch }: Props) {
           {(music.duration / 60).toFixed(2).replace(".", ":")} min
         </span>
 
-        <ActionButton colors="blue">
+        <ActionButton colors="blue" onClick={handlePlayMusic}>
           <FiPlay />
         </ActionButton>
 

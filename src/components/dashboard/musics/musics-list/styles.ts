@@ -6,6 +6,15 @@ export const MusicsListWrapper = Stitches.styled("section", {
   backgroundColor: "$bgSecondary",
   borderRadius: "$default",
 
+  "& > div.musics-list": {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    gap: "$2",
+  },
+
   "& > div.alert": {
     width: "100%",
     padding: "$1 $3",

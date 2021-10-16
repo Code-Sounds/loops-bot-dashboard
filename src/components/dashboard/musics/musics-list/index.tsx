@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { API } from "../../../../services/fetch-api";
 import { MusicAPIData } from "../../../../types";
@@ -35,11 +35,16 @@ export function MusicsList() {
       {isFetching && <Loading />}
 
       {!isFetching && musics.length > 0 && (
-        <>
-          {musics.map((music) => (
-            <MusicBox key={music.id} music={music} refetch={handleRefetch} />
+        <div className="musics-list">
+          {musics.map((music, index) => (
+            <MusicBox
+              key={music.id}
+              music={music}
+              refetch={handleRefetch}
+              index={index + 1}
+            />
           ))}
-        </>
+        </div>
       )}
 
       {!isFetching && musics.length === 0 && (
