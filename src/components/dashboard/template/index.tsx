@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { FiHome, FiMusic, FiPower } from "react-icons/fi";
+import { useAuth } from "../../../hooks/use-auth";
 import { Container } from "../container";
 import { MenuButton } from "./menu-button";
 import { TemplateContent, TemplateSidebar, TemplateWrapper } from "./styles";
@@ -9,6 +10,8 @@ type TemplateProps = {
 };
 
 export function Template({ children }: TemplateProps) {
+  const { signOut } = useAuth();
+
   return (
     <TemplateWrapper>
       <TemplateSidebar>
@@ -17,7 +20,12 @@ export function Template({ children }: TemplateProps) {
           <MenuButton Icon={<FiMusic />} redirectTo="/musics" isRedirect />
         </nav>
 
-        <MenuButton Icon={<FiPower />} isRedirect={false} className="logout" />
+        <MenuButton
+          Icon={<FiPower />}
+          isRedirect={false}
+          className="logout"
+          onClick={signOut}
+        />
       </TemplateSidebar>
       <TemplateContent>
         <Container>{children}</Container>
