@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import { API } from "../../../../services/fetch-api";
 import { MusicAPIData } from "../../../../types";
+import { Loading } from "../../../generics/loadings";
 import { MusicsListWrapper } from "./styles";
 
 type MusicsListResponse = {
@@ -27,6 +28,7 @@ export function MusicsList() {
   return (
     <MusicsListWrapper>
       <h1>Musics List</h1>
+      <Loading />
     </MusicsListWrapper>
   );
 }
