@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { API } from "../../../../services/fetch-api";
 import { MusicAPIData } from "../../../../types";
 import { Loading } from "../../../generics/loadings";
+import { MusicBox } from "./music-box";
 import { MusicsListWrapper } from "./styles";
 
 type MusicsListResponse = {
@@ -12,7 +13,7 @@ type MusicsListResponse = {
 export function MusicsList() {
   const [musics, setMusics] = useState<MusicAPIData[]>([]);
 
-  const { isFetching } = useQuery<MusicsListResponse>(
+  const { isFetching, refetch } = useQuery<MusicsListResponse>(
     "musics",
     async () => {
       const { data } = await API.get<MusicsListResponse>("/musics/list");
@@ -25,6 +26,10 @@ export function MusicsList() {
     }
   );
 
+  const handleRefetch = async () => {
+    await refetch();
+  };
+
   return (
     <MusicsListWrapper>
       {isFetching && <Loading />}
@@ -32,9 +37,7 @@ export function MusicsList() {
       {!isFetching && musics.length > 0 && (
         <>
           {musics.map((music) => (
-            <div key={music.id}>
-              <h3>{music.name}</h3>
-            </div>
+            <MusicBox key={music.id} music={music} refetch={handleRefetch} />
           ))}
         </>
       )}

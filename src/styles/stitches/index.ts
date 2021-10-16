@@ -45,6 +45,8 @@ export const Stitches = createStitches({
       secondary: "#CA7B1D",
       purple: "#833FB8",
       purpleDark: "#2C193A",
+      blue: "#00B2E3",
+      blueDark: "#002855",
       red: "#EF2E39",
       redDark: "#511619",
       white: "#FFFFFF",

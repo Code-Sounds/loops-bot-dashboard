@@ -68,6 +68,7 @@ export const MusicBoxRight = Stitches.styled("div", {
     justifyContent: "center",
     alignItems: "center",
     gap: "$1",
+    marginRight: "$6",
   },
 
   "& > span > svg": {

@@ -44,3 +44,118 @@ export const DefaultButton = Stitches.styled("button", {
     },
   },
 });
+
+export const ActionButton = Stitches.styled("button", {
+  borderRadius: "$default",
+  borderWidth: "$2",
+  borderStyle: "solid",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  transition: "all 0.2s ease-in-out",
+  backgroundColor: "transparent",
+
+  variants: {
+    colors: {
+      secondary: {
+        backgroundColor: "$secondary",
+        borderColor: "$secondary",
+        "& svg": {
+          color: "$white",
+        },
+
+        "&:hover": {
+          backgroundColor: "transparent",
+          borderColor: "$secondary",
+
+          "& svg": {
+            color: "$secondary",
+          },
+        },
+      },
+      primary: {
+        backgroundColor: "$primary",
+        borderColor: "$primary",
+        "& svg": {
+          color: "$white",
+        },
+
+        "&:hover": {
+          backgroundColor: "transparent",
+          borderColor: "$primary",
+
+          "& svg": {
+            color: "$primary",
+          },
+        },
+      },
+      red: {
+        backgroundColor: "$red",
+        borderColor: "$red",
+        "& svg": {
+          color: "$white",
+        },
+
+        "&:hover": {
+          backgroundColor: "transparent",
+          borderColor: "$red",
+
+          "& svg": {
+            color: "$red",
+          },
+        },
+      },
+      blue: {
+        backgroundColor: "$blue",
+        borderColor: "$blue",
+
+        "& svg": {
+          color: "$white",
+        },
+
+        "&:hover": {
+          backgroundColor: "transparent",
+          borderColor: "$blue",
+
+          "& svg": {
+            color: "$blue",
+          },
+        },
+      },
+    },
+    size: {
+      small: {
+        height: "$2",
+        width: "$2",
+
+        "& svg": {
+          width: "$iconSmall",
+          height: "$iconSmall",
+        },
+      },
+      medium: {
+        height: "$3",
+        width: "$3",
+
+        "& svg": {
+          width: "$iconMedium",
+          height: "$iconMedium",
+        },
+      },
+      large: {
+        height: "$4",
+        width: "$4",
+
+        "& svg": {
+          width: "$iconLarge",
+          height: "$iconLarge",
+        },
+      },
+    },
+  },
+
+  defaultVariants: {
+    colors: "red",
+    size: "medium",
+  },
+});

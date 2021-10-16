@@ -1,5 +1,6 @@
-import { FiClock } from "react-icons/fi";
+import { FiClock, FiPlay, FiTrash } from "react-icons/fi";
 import { MusicAPIData } from "../../../../../types";
+import { ActionButton } from "../../../../generics/buttons";
 import { TextHideTooltip } from "../../../../generics/text-tooltip";
 import {
   MusicBoxLeft,
@@ -40,6 +41,14 @@ export function MusicBox({ music, refetch }: Props) {
           <FiClock />
           {(music.duration / 60).toFixed(2).replace(".", ":")} min
         </span>
+
+        <ActionButton colors="blue">
+          <FiPlay />
+        </ActionButton>
+
+        <ActionButton>
+          <FiTrash />
+        </ActionButton>
       </MusicBoxRight>
     </MusicBoxWrapper>
   );
