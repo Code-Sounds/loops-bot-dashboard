@@ -12,7 +12,7 @@ type MusicsListResponse = {
 export function MusicsList() {
   const [musics, setMusics] = useState<MusicAPIData[]>([]);
 
-  const {} = useQuery<MusicsListResponse>(
+  const { isFetching } = useQuery<MusicsListResponse>(
     "musics",
     async () => {
       const { data } = await API.get<MusicsListResponse>("/musics/list");
@@ -27,8 +27,23 @@ export function MusicsList() {
 
   return (
     <MusicsListWrapper>
-      <h1>Musics List</h1>
-      <Loading />
+      {isFetching && <Loading />}
+
+      {!isFetching && musics.length > 0 && (
+        <>
+          {musics.map((music) => (
+            <div key={music.id}>
+              <h3>{music.name}</h3>
+            </div>
+          ))}
+        </>
+      )}
+
+      {!isFetching && musics.length === 0 && (
+        <div>
+          <strong>Não há músicas adicionadas ao bot.</strong>
+        </div>
+      )}
     </MusicsListWrapper>
   );
 }

@@ -1,8 +1,12 @@
 import { LoadingWrapper } from "./styles";
 
-export function Loading() {
+type Props = {
+  position?: "default" | "absolute" | undefined;
+};
+
+export function Loading({ position }: Props) {
   return (
-    <LoadingWrapper>
+    <LoadingWrapper position={position}>
       <div />
       <div />
       <div />
