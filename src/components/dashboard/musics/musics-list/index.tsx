@@ -40,7 +40,7 @@ export function MusicsList() {
       )}
 
       {!isFetching && musics.length === 0 && (
-        <div>
+        <div className="alert">
           <strong>Não há músicas adicionadas ao bot.</strong>
         </div>
       )}
