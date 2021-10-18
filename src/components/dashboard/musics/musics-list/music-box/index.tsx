@@ -33,7 +33,7 @@ export function MusicBox({ music, refetch, index }: Props) {
             <TextHideTooltip
               displayText={`${music.name.substring(0, 40)}...`}
               fullText={music.name}
-              tooltipKey="music-name"
+              tooltipKey={music.name}
               className="music-name"
             />
           </strong>
