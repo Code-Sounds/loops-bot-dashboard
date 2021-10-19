@@ -2,7 +2,7 @@ import { Stitches } from "../../../../../styles/stitches";
 
 export const MusicBoxWrapper = Stitches.styled("div", {
   width: "100%",
-  height: "$5",
+  minheight: "$5",
   backgroundColor: "$bgPrimary",
   borderRadius: "$default",
 

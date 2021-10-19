@@ -35,6 +35,36 @@ export const globalStyles = globalCss({
     border: 0,
     outline: 0,
   },
+  ".modal-default-wrapper-overlay": {
+    zIndex: 99999,
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: "rgba(65, 105, 225, 0.2)",
+  },
+
+  ".modal-default-wrapper": {
+    zIndex: 99999,
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+
+    minHeight: "fit-content",
+    width: "fit-content",
+    backgroundColor: "var(--pure-white)",
+    boxShadow: "0px 0px 6px 4px rgba(0, 0, 0, 0.1)",
+    borderRadius: "10px",
+    padding: "15px",
+
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-between",
+    background: "#11121A",
+  },
 });
 
 export const Stitches = createStitches({

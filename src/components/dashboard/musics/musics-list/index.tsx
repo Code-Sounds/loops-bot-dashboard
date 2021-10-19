@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import toast from "react-hot-toast";
 import { FiPlus } from "react-icons/fi";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { API } from "../../../../services/fetch-api";
 import { MusicAPIData } from "../../../../types";
-import { ActionButton } from "../../../generics/buttons";
+import { ActionButton, DefaultButton } from "../../../generics/buttons";
+import { FieldWrapper } from "../../../generics/forms";
 import { Loading } from "../../../generics/loadings";
+import { ModalDefaultWrapper } from "../../../generics/modal-wrapper";
 import { MusicBox } from "./music-box";
 import { MusicsListWrapper } from "./styles";
 
@@ -14,6 +17,12 @@ type MusicsListResponse = {
 
 export function MusicsList() {
   const [musics, setMusics] = useState<MusicAPIData[]>([]);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [musicArtist, setMusicArtist] = useState("");
+  const [musicUrl, setMusicUrl] = useState("");
+
+  const handleOpenModal = () => setIsOpenModal(true);
+  const handleCloseModal = () => setIsOpenModal(false);
 
   const { isFetching, refetch } = useQuery<MusicsListResponse>(
     "musics",
@@ -28,6 +37,29 @@ export function MusicsList() {
     }
   );
 
+  const addMusicMutation = useMutation(
+    () => {
+      return API.post("/musics/add", {
+        artist: musicArtist,
+        url: musicUrl,
+      });
+    },
+    {
+      onSuccess: () => {
+        toast.success("Música adicionada com sucesso!");
+      },
+      onError: () => {
+        toast.error("Não foi possível adicionar a música!");
+      },
+      onSettled: async () => {
+        await refetch();
+        setTimeout(() => {
+          handleCloseModal();
+        }, 800);
+      },
+    }
+  );
+
   const handleRefetch = async () => {
     await refetch();
   };
@@ -36,7 +68,7 @@ export function MusicsList() {
     <MusicsListWrapper>
       {isFetching && <Loading />}
 
-      <ActionButton colors="primary" size="large">
+      <ActionButton colors="primary" size="large" onClick={handleOpenModal}>
         <FiPlus />
       </ActionButton>
       {!isFetching && musics.length > 0 && (
@@ -57,6 +89,44 @@ export function MusicsList() {
           <strong>Não há músicas adicionadas ao bot.</strong>
         </div>
       )}
+
+      <ModalDefaultWrapper
+        ModalIcon={<FiPlus />}
+        isOpenModal={isOpenModal}
+        closeModal={handleCloseModal}
+        modalTitle="Adicionar música"
+      >
+        <>
+          <FieldWrapper label="Artista">
+            <input
+              type="artist"
+              value={musicArtist}
+              onChange={(e) => setMusicArtist(e.target.value)}
+              required
+            />
+          </FieldWrapper>
+          <FieldWrapper label="URL da música">
+            <input
+              type="url"
+              value={musicUrl}
+              onChange={(e) => setMusicUrl(e.target.value)}
+              required
+            />
+          </FieldWrapper>
+
+          <DefaultButton
+            color="primary"
+            size="medium"
+            type="button"
+            css={{ marginTop: "$3" }}
+            onClick={() => {
+              addMusicMutation.mutate();
+            }}
+          >
+            {addMusicMutation.isLoading ? "Carregando..." : "Adicionar"}
+          </DefaultButton>
+        </>
+      </ModalDefaultWrapper>
     </MusicsListWrapper>
   );
 }
