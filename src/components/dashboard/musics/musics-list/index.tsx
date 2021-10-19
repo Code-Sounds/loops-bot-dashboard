@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { FiPlus } from "react-icons/fi";
 import { useQuery } from "react-query";
 import { API } from "../../../../services/fetch-api";
 import { MusicAPIData } from "../../../../types";
+import { ActionButton } from "../../../generics/buttons";
 import { Loading } from "../../../generics/loadings";
 import { MusicBox } from "./music-box";
 import { MusicsListWrapper } from "./styles";
@@ -34,6 +36,9 @@ export function MusicsList() {
     <MusicsListWrapper>
       {isFetching && <Loading />}
 
+      <ActionButton colors="primary" size="large">
+        <FiPlus />
+      </ActionButton>
       {!isFetching && musics.length > 0 && (
         <div className="musics-list">
           {musics.map((music, index) => (
