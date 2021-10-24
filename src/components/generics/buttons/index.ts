@@ -55,6 +55,13 @@ export const ActionButton = Stitches.styled("button", {
   transition: "all 0.2s ease-in-out",
   backgroundColor: "transparent",
 
+  "&:disabled": {
+    opacity: 0.5,
+    backgroundColor: "$gray100",
+    borderColor: "$gray100",
+    cursor: "not-allowed",
+  },
+
   variants: {
     colors: {
       secondary: {
@@ -64,7 +71,7 @@ export const ActionButton = Stitches.styled("button", {
           color: "$white",
         },
 
-        "&:hover": {
+        "&:not(:disabled):hover": {
           backgroundColor: "transparent",
           borderColor: "$secondary",
 
@@ -80,7 +87,7 @@ export const ActionButton = Stitches.styled("button", {
           color: "$white",
         },
 
-        "&:hover": {
+        "&:not(:disabled):hover": {
           backgroundColor: "transparent",
           borderColor: "$primary",
 
@@ -96,7 +103,7 @@ export const ActionButton = Stitches.styled("button", {
           color: "$white",
         },
 
-        "&:hover": {
+        "&:not(:disabled):hover": {
           backgroundColor: "transparent",
           borderColor: "$red",
 
@@ -113,7 +120,7 @@ export const ActionButton = Stitches.styled("button", {
           color: "$white",
         },
 
-        "&:hover": {
+        "&:not(:disabled):hover": {
           backgroundColor: "transparent",
           borderColor: "$blue",
 

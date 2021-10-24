@@ -1,6 +1,7 @@
 import { FiClock, FiPlay, FiTrash } from "react-icons/fi";
 import { MusicAPIData } from "../../../../../types";
 import { ActionButton } from "../../../../generics/buttons";
+import { Loading } from "../../../../generics/loadings";
 import { TextHideTooltip } from "../../../../generics/text-tooltip";
 import {
   MusicBoxLeft,
@@ -14,9 +15,10 @@ type Props = {
   music: MusicAPIData;
   refetch: () => void | Promise<void>;
   index: number;
+  isPlaying: boolean;
 };
 
-export function MusicBox({ music, refetch, index }: Props) {
+export function MusicBox({ music, refetch, index, isPlaying }: Props) {
   function handlePlayMusic() {
     window.open(music.url, "_blank");
   }
@@ -40,6 +42,8 @@ export function MusicBox({ music, refetch, index }: Props) {
         </MusicBoxLeftInfos>
       </MusicBoxLeft>
       <MusicBoxRight>
+        {isPlaying && <Loading position="default" color="secondary" />}
+
         <span className="duration">
           <FiClock />
           {(music.duration / 60).toFixed(2).replace(".", ":")} min
@@ -49,7 +53,7 @@ export function MusicBox({ music, refetch, index }: Props) {
           <FiPlay />
         </ActionButton>
 
-        <ActionButton>
+        <ActionButton disabled={isPlaying}>
           <FiTrash />
         </ActionButton>
       </MusicBoxRight>

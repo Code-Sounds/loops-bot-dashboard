@@ -15,7 +15,11 @@ type MusicsListResponse = {
   musics: MusicAPIData[];
 };
 
-export function MusicsList() {
+type Props = {
+  musicPlaying: MusicAPIData | null;
+};
+
+export function MusicsList({ musicPlaying }: Props) {
   const [musics, setMusics] = useState<MusicAPIData[]>([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [musicArtist, setMusicArtist] = useState("");
@@ -79,6 +83,7 @@ export function MusicsList() {
               music={music}
               refetch={handleRefetch}
               index={index + 1}
+              isPlaying={musicPlaying?.id === music.id}
             />
           ))}
         </div>
