@@ -16,7 +16,7 @@ export const LoadingWrapper = Stitches.styled("div", {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  gap: "$1",
+  gap: "5px",
 
   "& > *": {
     width: "10px",
@@ -27,19 +27,36 @@ export const LoadingWrapper = Stitches.styled("div", {
   },
 
   "& > *:nth-child(1)": {
-    animation: `${UpBarAnimation} 2s linear infinite`,
+    animation: `${UpBarAnimation} 1s linear infinite`,
     animationDelay: "0s",
   },
   "& > *:nth-child(2)": {
-    animation: `${UpBarAnimation} 2s linear infinite`,
+    animation: `${UpBarAnimation} 1s linear infinite`,
     animationDelay: "0.3s",
   },
   "& > *:nth-child(3)": {
-    animation: `${UpBarAnimation} 2s linear infinite`,
+    animation: `${UpBarAnimation} 1s linear infinite`,
     animationDelay: "0.6s",
   },
 
   variants: {
+    color: {
+      primary: {
+        "& > *": {
+          backgroundColor: "$primary",
+        },
+      },
+      secondary: {
+        "& > *": {
+          backgroundColor: "$secondary",
+        },
+      },
+      blue: {
+        "& > *": {
+          backgroundColor: "$blue",
+        },
+      },
+    },
     position: {
       absolute: {
         width: "100%",
@@ -58,5 +75,6 @@ export const LoadingWrapper = Stitches.styled("div", {
 
   defaultVariants: {
     position: "default",
+    color: "primary",
   },
 });
