@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
+    "@types/domhandler": "^2.4.2",
     "@types/node": "^16.10.9",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
