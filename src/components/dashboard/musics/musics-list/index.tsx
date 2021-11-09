@@ -28,7 +28,7 @@ export function MusicsList({ musicPlaying }: Props) {
   const handleOpenModal = () => setIsOpenModal(true);
   const handleCloseModal = () => setIsOpenModal(false);
 
-  const { isFetching, refetch } = useQuery<MusicsListResponse>(
+  const { isLoading, refetch } = useQuery<MusicsListResponse>(
     "musics",
     async () => {
       const { data } = await API.get<MusicsListResponse>("/musics/list");
@@ -70,12 +70,15 @@ export function MusicsList({ musicPlaying }: Props) {
 
   return (
     <MusicsListWrapper>
-      {isFetching && <Loading />}
+      {isLoading && <Loading />}
 
-      <ActionButton colors="primary" size="large" onClick={handleOpenModal}>
-        <FiPlus />
-      </ActionButton>
-      {!isFetching && musics.length > 0 && (
+      {!isLoading && (
+        <ActionButton colors="primary" size="large" onClick={handleOpenModal}>
+          <FiPlus />
+        </ActionButton>
+      )}
+
+      {!isLoading && musics.length > 0 && (
         <div className="musics-list">
           {musics.map((music, index) => (
             <MusicBox
@@ -89,7 +92,7 @@ export function MusicsList({ musicPlaying }: Props) {
         </div>
       )}
 
-      {!isFetching && musics.length === 0 && (
+      {!isLoading && musics.length === 0 && (
         <div className="alert">
           <strong>Não há músicas adicionadas ao bot.</strong>
         </div>
