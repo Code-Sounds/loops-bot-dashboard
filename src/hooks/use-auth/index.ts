@@ -19,10 +19,16 @@ export function useAuth() {
 
   const signIn = useMutation(
     (props: UserSignInParams) => {
-      return API.post<UserSignInData>("/admin/login", {
-        email: props.email,
-        password: props.password,
-      });
+      return API.post<UserSignInData>(
+        "/admin/login",
+        {
+          email: props.email,
+          password: props.password,
+        },
+        {
+          validateStatus: (status) => status === 200,
+        }
+      );
     },
     {
       onSuccess: (data) => {

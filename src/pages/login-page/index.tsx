@@ -1,5 +1,5 @@
 import { useHistory } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 
 import { DefaultButton } from "../../components/generics/buttons";
@@ -12,21 +12,35 @@ import logoLarge from "../../assets/logo-large.svg";
 export function LoginPage() {
   const history = useHistory();
   const { signIn } = useAuth();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
-  const onSuccess = () => {
+  const onSuccess = useCallback(() => {
     toast.success("Login realizado com sucesso!");
     history.push("/");
-  };
+  }, [history]);
 
   const onError = () => {
-    toast.error("Falha ao realizar login!");
+    toast.error("Dados de login incorretos!");
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    signIn.mutate({ email, password });
+
+    const data = {
+      email: emailRef.current?.value,
+      password: passwordRef.current?.value,
+    };
+
+    if (data.email && data.password) {
+      signIn.mutate({
+        email: data.email,
+        password: data.password,
+      });
+      return;
+    }
+
+    toast.error("Preencha todos os campos!");
   };
 
   useEffect(() => {
@@ -38,7 +52,7 @@ export function LoginPage() {
       onError();
       return;
     }
-  }, [signIn]);
+  }, [onSuccess, signIn]);
 
   return (
     <LoginPageWrapper>
@@ -48,20 +62,10 @@ export function LoginPage() {
         </div>
 
         <FieldWrapper label="Email">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+          <input type="email" ref={emailRef} required />
         </FieldWrapper>
         <FieldWrapper label="Password">
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <input type="password" ref={passwordRef} required />
         </FieldWrapper>
 
         <DefaultButton
