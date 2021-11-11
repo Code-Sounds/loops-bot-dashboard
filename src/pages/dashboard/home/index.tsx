@@ -8,6 +8,7 @@ import { SOCKET_EVENTS } from "../../../constants";
 import { API } from "../../../services/fetch-api";
 import { socket } from "../../../services/socket";
 import { MusicAPIData, ServerConnectedType } from "../../../types";
+import { getMusicsDurationFormatted } from "../../../utils/generic";
 import {
   getStoredServersConnected,
   storeServersConnected,
@@ -68,7 +69,9 @@ export function HomePage() {
         <InfosBox
           Icon={<FiClock />}
           title="Tempo de música"
-          value="3h"
+          value={
+            musics.length > 0 ? getMusicsDurationFormatted(musics) : "00:00"
+          }
           theme="purple"
         />
       </HomePageContent>

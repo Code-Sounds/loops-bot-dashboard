@@ -3,6 +3,7 @@ import { FiClock, FiPlay, FiTrash } from "react-icons/fi";
 import { useMutation } from "react-query";
 import { API } from "../../../../../services/fetch-api";
 import { MusicAPIData } from "../../../../../types";
+import { formatAudioDurationToString } from "../../../../../utils/generic";
 import { ActionButton } from "../../../../generics/buttons";
 import { Loading } from "../../../../generics/loadings";
 import { TextHideTooltip } from "../../../../generics/text-tooltip";
@@ -73,7 +74,7 @@ export function MusicBox({ music, refetch, index, isPlaying }: Props) {
 
         <span className="duration">
           <FiClock />
-          {(music.duration / 60).toFixed(2).replace(".", ":")} min
+          {formatAudioDurationToString(music.duration)}
         </span>
 
         <ActionButton colors="blue" type="button" onClick={handlePlayMusic}>
