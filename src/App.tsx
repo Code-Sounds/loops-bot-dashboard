@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import { globalStyles } from "./styles/stitches";
 import { useEffect } from "react";
 import { socket } from "./services/socket";
+import { SOCKET_EVENTS } from "./constants";
 
 const queryClient = new QueryClient();
 
@@ -13,6 +14,8 @@ function App() {
   useEffect(() => {
     socket.on("connect", () => {
       console.log("connected to socket");
+
+      socket.emit(SOCKET_EVENTS.getServersConnected, {});
     });
 
     return () => {

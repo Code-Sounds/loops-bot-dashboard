@@ -16,3 +16,8 @@ export type MusicAPIData = {
   updatedAt: string;
   duration: number;
 };
+
+export type ServerConnectedType = {
+  id: string;
+  name: string;
+};
