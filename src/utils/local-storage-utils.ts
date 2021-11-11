@@ -1,7 +1,8 @@
 import { CONSTANTS } from "../constants";
-import { UserData } from "../types";
+import { ServerConnectedType, UserData } from "../types";
 
-const { USER_TOKEN_STORE_KEY, USER_STORE_KEY } = CONSTANTS;
+const { USER_TOKEN_STORE_KEY, USER_STORE_KEY, SERVERS_CONNECTED_STORE_KEY } =
+  CONSTANTS;
 
 export function getStoragedToken(
   tokenKey = USER_TOKEN_STORE_KEY
@@ -27,4 +28,16 @@ export function setStoredUser(user: UserData): void {
 export function getStoredUser(): UserData | null {
   const user = localStorage.getItem(USER_STORE_KEY);
   return user ? JSON.parse(user) : null;
+}
+
+export function storeServersConnected(data: ServerConnectedType[]) {
+  localStorage.setItem(SERVERS_CONNECTED_STORE_KEY, JSON.stringify(data));
+}
+
+export function getStoredServersConnected(): ServerConnectedType[] {
+  const serversConnected = localStorage.getItem(SERVERS_CONNECTED_STORE_KEY);
+  const data: ServerConnectedType[] = serversConnected
+    ? JSON.parse(serversConnected)
+    : [];
+  return data;
 }
