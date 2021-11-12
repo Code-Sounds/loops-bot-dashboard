@@ -16,6 +16,21 @@ export const globalStyles = globalCss({
   "html, input, button, select, a": {
     fontFamily: "Inter, sans-serif",
   },
+  "::-webkit-scrollbar-track ": {
+    "-webkit-box-shadow": "inset 0 0 6px rgba(0, 0, 0, 0.3)",
+    borderRadius: "10px",
+    backgroundColor: "#f5f5f5",
+  },
+  "::-webkit-scrollbar": {
+    width: "12px",
+    backgroundColor: "#f5f5f5",
+  },
+
+  "::-webkit-scrollbar-thumb": {
+    borderRadius: "10px",
+    "-webkit-box-shadow": "inset 0 0 6px rgba(0, 0, 0, 0.3)",
+    backgroundColor: "#caced8",
+  },
   img: {
     maxWidth: "100%",
     display: "block",
@@ -64,6 +79,24 @@ export const globalStyles = globalCss({
     alignItems: "center",
     justifyContent: "space-between",
     background: "#11121A",
+  },
+  "div.alert": {
+    width: "100%",
+    padding: "$1 $3",
+    height: "$5",
+    backgroundColor: "$bgPrimary",
+    border: "1px solid $secondary",
+    borderRadius: "$default",
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
+
+  "div.alert > strong": {
+    color: "$secondary",
+    fontSize: "$body",
+    fontWeight: "$body",
+    textAlign: "left",
   },
 });
 
